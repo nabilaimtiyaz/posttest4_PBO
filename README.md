@@ -15,61 +15,32 @@ Dalam sistem ini, hasil panen dikelompokkan menjadi dua kategori utama, yaitu sa
 # <sub>Penjelasan kode</sub>
 
 
-<img width="1091" height="624" alt="image" src="https://github.com/user-attachments/assets/dfd8f90b-b9f1-4d0f-a6e6-4a79630fb3a7" />
-
-
-<img width="1041" height="380" alt="image" src="https://github.com/user-attachments/assets/83b101f9-f80a-46de-9ca8-2b20e6d449a8" />
-
-
-Class itemPanen berperan sebagai superclass yang mempresentasikan data umum dari sebuah hasil panen. Didalamnya terdapat properti utama seperti 'nama', 'beratkg', dan 'kualitas'. Menerapkan encapsulation dengan menjadikan atribut private lalu menyediakan getter dan setter agar data hanya bisa diakses melalui method yang sudah disediakan. Memiliki constructor untuk memudahkan pembuatan objek hasil panen baru. Ada juga method tampilkanInfo() yang nantinya bisa di-override oleh subclass untuk menampilkan detail khusus.
-
-
 <img width="475" height="151" alt="image" src="https://github.com/user-attachments/assets/cbb9695c-e2a0-4f52-b428-4f59bee53ba8" />
 
-
-Class buah adalah subclass dari itemPanen yang mempresentasikan hasil panen khusus katefori buah. Menambahkan atribut khusus seperti lamaSimpan untuk menyimpan informasi ketahanan buah. Menggunakan constructor untuk mengisi data buah sekaligus memanggil constructor superclass. Melakukan overriding pada method tampilkanInfo() agar selain menampilkan atribut umum juga menampilkan informasi lama simpan.
-
-
-<img width="1080" height="628" alt="image" src="https://github.com/user-attachments/assets/8c831c71-4b92-4b51-81c4-f06157ecc8aa" />
+Pada program ini, konsep Abstraction diterapkan melalui class ItemPanen yang berada di packages model. Class ini berfungsi sebagai representasi umum dari seluruh hasil panen. Dengan adanya class induk ini, detail implementasi dari setiap jenis panen tidak perlu diketahui pengguna, cukup melalui method umum seperti tampilkanInfo().
 
 
-Class sayur merupakan subclass dari itemPanen, tapi khusus untuk kategori sayur. Menambahkan atribut tambahan seperti caraSimpan. Constructor dibuat untuk menginisialisasi data sayur dan tetap memanggil constructor superclass. Method tampilkanInfo() juga di-override sehingga informasi khusus sayur ikut tampil selain atribut umum.
+<img width="834" height="185" alt="image" src="https://github.com/user-attachments/assets/d10250d9-502d-4370-8cea-646e8083f6d3" />
 
 
-<img width="1035" height="673" alt="image" src="https://github.com/user-attachments/assets/07f9b6d3-37ea-4f20-a9fb-cc4b63a91952" />
+Selain abstraction, program ini juga menerapkan Polymorphism dalam dua bentuk, yaitu overriding dan overloading. Penerapan overriding terlihat pada subclass Buah dan Sayur yang menuliskan ulang method tampilkanInfo() milik ItemPanen.
+
+Meskipun method yang dipanggil sama, hasil yang ditampilkan berbeda sesuai jenis objek yang digunakan.
 
 
-<img width="1147" height="775" alt="image" src="https://github.com/user-attachments/assets/0a6baf50-9c55-4a6e-b86a-77af40538fe4" />
+<img width="844" height="192" alt="image" src="https://github.com/user-attachments/assets/4fe5591c-4f61-467b-9f68-563cbac2818b" />
 
 
-<img width="1147" height="782" alt="image" src="https://github.com/user-attachments/assets/78aefc21-8d67-47a7-b61b-1a79ab9b0a01" />
-
-
-<img width="865" height="779" alt="image" src="https://github.com/user-attachments/assets/2bbfe549-54de-4952-8455-682bff60293b" />
-
-
-<img width="1202" height="324" alt="image" src="https://github.com/user-attachments/assets/65fca370-97af-4244-ab30-4fe09d8bb569" />
-
-
-Class panenService berguna untuk mengatur logika CRUD  dan pengelolaan data panen. Menyimpan data hasil panen dalam sebuah ArrayList<itemPanen>. Memiliki method untuk melakukan operasi: 
-1. tambahItem(), menambahkan data baru (baik buah maupun sayur).
-2. tampilkanItem(), menampilkan seluruh data panen, memanggil method.
-3. tampilkanInfor(), hasil overriding dari subclass.
-4. editItem(), mengubah data berdasarkan index pilihan pengguna.
-5. hapusItem(), menghapus item dari daftar panen.
-6. cariItem(), fitur tambahan untuk encari panen berdasarkan nama.
-Class ini menjadi penghubung utama antara input pengguna dan data yang dikelola.
-
-Class mainProgram adalah entry point atau titik awal eksekusi program. Class ini menyediakan menu interaktif berupa pilihan angka agar pengguna dapat melakukan operasi CRUD, menggunakan objek dari panenService untuk menjalankan logika pengelolaan data.
+Penerapan Polymorphism overriding pada subclass Sayur yang menuliskan ulang method tampilkanInfo() milik ItemPanen.
 
 
 # <sub>Penjelasan Alur Program</sub>
 
 
-<img width="326" height="200" alt="image" src="https://github.com/user-attachments/assets/955095c4-c815-432e-ac8d-1def05413453" />
+<img width="405" height="228" alt="image" src="https://github.com/user-attachments/assets/c84a31e9-675b-430c-bc2a-46565961b128" />
 
 
-Ketika program pertama kali dijalankan, pengguna akan langsung melihat menu utama yang menampilkan beberapa pilihan, yaitu Tambah Item, Lihat Item, Edit Item, Hapus Item, Cari Item, dan Keluar.
+Ketika program pertama kali dijalankan, pengguna akan langsung melihat menu utama yang menampilkan beberapa pilihan, yaitu Tambah Item, Lihat Item, Edit Item, Hapus Item, Cari Item (berdasarkan nama), Cari Item (berdasarkan kategori), dan Keluar.
 
 
 <img width="411" height="352" alt="image" src="https://github.com/user-attachments/assets/30b9ed8e-a799-4844-8109-d6536fec5674" />
@@ -96,15 +67,19 @@ Jika pengguna memilih opsi 3 (Edit Item), terlebih dahulu sistem akan menampilka
 Jika pengguna memilih opsi 4 (Hapus Item), daftar hasil panen kembali ditampilkan agar pengguna tahu nomor item yang ingin dihapus. Setelah memilih nomor, sistem akan menghapus data yang sesuai dan memberikan pesan konfirmasi bahwa item berhasil dihapus. Jika input salah, sistem menampilkan pesan bahwa nomor tidak valid.
 
 
-<img width="625" height="250" alt="image" src="https://github.com/user-attachments/assets/506af8bf-a193-491d-a9f7-de284adeed9e" />
+<img width="1267" height="77" alt="image" src="https://github.com/user-attachments/assets/454a07dd-6cf1-4dba-99c9-47c1f9625fec" />
 
 
-Jika pengguna memilih opsi 5 (Cari Item), program akan meminta pengguna mengetikkan nama item yang ingin dicari. Sistem kemudian melakukan pencarian dalam daftar panen. Jika data ditemukan, detail hasil panen akan ditampilkan sesuai kategorinya. Jika tidak ditemukan, sistem akan menampilkan pesan bahwa item tidak ada dalam daftar.
+
+Jika pengguna memilih opsi 5 (Cari Item (berdasarkan nama)), program akan meminta pengguna mengetikkan nama item yang ingin dicari. Sistem kemudian melakukan pencarian dalam daftar panen. Jika data ditemukan, detail hasil panen akan ditampilkan sesuai namanya. Jika tidak ditemukan, sistem akan menampilkan pesan bahwa item tidak ada dalam daftar.
+
+<img width="1077" height="71" alt="image" src="https://github.com/user-attachments/assets/f704e9d8-d15f-4c2e-b003-328dcfca65ce" />
+
+
+Jika pengguna memilih opsi 6 (Cari Item (berdasarkan kategori)), program akan meminta pengguna mengetikkan kategori item yang ingin dicari. Sistem kemudian melakukan pencarian dalam daftar panen. Jika data ditemukan, detail hasil panen akan ditampilkan sesuai kategorinya. Jika tidak ditemukan, sistem akan menampilkan pesan bahwa item tidak ada dalam daftar.
 
 
 <img width="351" height="230" alt="image" src="https://github.com/user-attachments/assets/ceba2a39-611e-4b52-b238-9f72e04ee2b5" />
 
 
-Jika pengguna memilih opsi 6 (Keluar), maka sistem menampilkan pesan ucapan terima kasih, lalu program berhenti berjalan.
-
-
+Jika pengguna memilih opsi 7 (Keluar), maka sistem menampilkan pesan ucapan terima kasih, lalu program berhenti berjalan.
